@@ -1,2 +1,2 @@
 # axum-pass
-Simple password authorization middleware for axum
+Simple password authorization middleware for axum.
