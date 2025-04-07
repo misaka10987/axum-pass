@@ -31,7 +31,7 @@ where
         };
         match state.as_ref().verify(&cred.user_id, &cred.password).await {
             Ok(true) => Ok(Password(cred.user_id)),
-            Ok(false) => Err(StatusCode::UNAUTHORIZED),
+            Ok(false) | Err(simple_safe::Error::UserNotExist(_)) => Err(StatusCode::UNAUTHORIZED),
             Err(e) => {
                 error!("{e}");
                 Err(StatusCode::INTERNAL_SERVER_ERROR)
